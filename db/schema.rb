@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_18_173953) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_18_184452) do
+  create_table "Albums_Photos", id: false, force: :cascade do |t|
+    t.integer "Photo_id", null: false
+    t.integer "Album_id", null: false
+    t.index ["Album_id", "Photo_id"], name: "index_Albums_Photos_on_album_id_and_photo_id"
+    t.index ["Photo_id", "Album_id"], name: "index_Albums_Photos_on_photo_id_and_album_id"
+  end
+
   create_table "albums", force: :cascade do |t|
     t.string "name"
     t.string "des"
@@ -19,13 +26,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_173953) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_albums_on_user_id"
-  end
-
-  create_table "albums_photos", id: false, force: :cascade do |t|
-    t.integer "album_id", null: false
-    t.integer "photo_id", null: false
-    t.index ["album_id", "photo_id"], name: "index_albums_photos_on_album_id_and_photo_id"
-    t.index ["photo_id", "album_id"], name: "index_albums_photos_on_photo_id_and_album_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -37,21 +37,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_173953) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_photos_on_user_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.string "first_name"
-    t.string "last_name"
-    t.boolean "is_active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
