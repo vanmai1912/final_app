@@ -1,10 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<!-- app/views/photos/show.html.erb -->
+<h1>Photo Details</h1>
 
-<%= render @photo %>
+<% if @photo.image.attached? %>
+  <div>
+    <%= image_tag url_for(@photo.image), class: 'photo-image', size: '300x200' %>
+  </div>
+<% else %>
+  <p>No image available.</p>
+<% end %>
 
-<div>
-  <%= link_to "Edit this photo", edit_photo_path(@photo) %> |
-  <%= link_to "Back to photos", photos_path %>
+<p>Name: <%= @photo.name %></p>
+<p>Description: <%= @photo.des %></p>
 
-  <%= button_to "Destroy this photo", @photo, method: :delete %>
-</div>

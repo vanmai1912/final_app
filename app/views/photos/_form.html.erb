@@ -1,17 +1,40 @@
-<%= form_with(model: photo) do |form| %>
-  <% if photo.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+<%= form_with(model: @photo, local: true) do |form| %>
 
-      <ul>
-        <% photo.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-outline mb-4 w-100">
+          <%= form.label :name %>
+          <%= form.text_field :name,class: "form-control form-control-lg" %>
+        </div>
+        <div class="form-outline mb-4 w-100">
+          <%= form.label :is_active, 'Sharing Mode' %>
+          <%= form.select :is_active, [['Public', 1], ['Private', 0]], { selected: @photo.is_active ? 1 : 0 }, class: 'form-select' %>
+        </div>
+        <div class="col-md-4">
+          <div class="profile-img" data-controller="upload-image">
+            <h5>Change Photo</h5>
+            <!-- Trang view hoặc partial view -->
+            
+            <% if @photo && @photo.url.present? %>
+            <!-- Hiển thị ảnh đã chọn -->
+            <%= image_tag( @photo.url, id: 'photo-preview', class: 'preview' )%>
+            <% else %>
+              <!-- Hiển thị form chọn ảnh -->
+              <%= form.file_field :image, id: 'photo-upload', accept: 'image/*' %>
+            <% end %>
 
-  <div>
-    <%= form.submit %>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-outline mb-4 w-100">
+          <%= form.label :des %>
+          <%= form.text_area :des, class: "form-control form-control-lg" %>
+        </div>
+      </div>
+  </div>
+  <div class="actions">
+    <%= form.submit :save %>
   </div>
 <% end %>

@@ -1,13 +1,15 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!
   # GET /photos or /photos.json
   def index
-    @photos = Photo.all
+
+    @photos = current_user.photos.all
   end
 
   # GET /photos/1 or /photos/1.json
   def show
+    @photo = Photo.find(params[:id])
   end
 
   # GET /photos/new
@@ -21,17 +23,25 @@ class PhotosController < ApplicationController
 
   # POST /photos or /photos.json
   def create
-    @photo = Photo.new(photo_params)
 
-    respond_to do |format|
-      if @photo.save
-        format.html { redirect_to photo_url(@photo), notice: "Photo was successfully created." }
-        format.json { render :show, status: :created, location: @photo }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
-      end
+    @photo = current_user.photos.new(photo_params)
+
+    if @photo.save
+      redirect_to @photo, notice: "Photo was successfully created."
+    else
+      render :new
     end
+    # @photo = Photo.new(photo_params)
+
+    # respond_to do |format|
+    #   if @photo.save
+    #     format.html { redirect_to photo_url(@photo), notice: "Photo was successfully created." }
+    #     format.json { render :show, status: :created, location: @photo }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @photo.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /photos/1 or /photos/1.json
@@ -64,7 +74,11 @@ class PhotosController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
+    # def photo_params
+    #   params.fetch(:photo, {})
+    # end
+
     def photo_params
-      params.fetch(:photo, {})
+      params.require(:photo).permit(:name, :des, :image)
     end
 end

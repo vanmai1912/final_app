@@ -1,0 +1,68 @@
+<div class="sidebar-left pt-5 col-2 d-none d-md-block"  >
+  <div class="sidebar-sticky pt-3">
+
+    <% if user_signed_in? %>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">
+            <span data-feather="home"></span>
+            Feeds 
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <%= link_to "My Photos", photos_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "My Albums", albums_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+          
+        </li>
+      </ul>
+    <% else %>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">
+            <span data-feather="home"></span>
+            Feeds For Guest<span class="sr-only">(current)</span>
+          </a>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Tab Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <% if user_signed_in? %>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">
+            <span data-feather="home"></span>
+            Feeds <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <%= link_to "My Photos", photos_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "My Albums", albums_path, class: "nav-link active" %>
+        </li>
+      </ul>
+    <% else %>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">
+            <span data-feather="home"></span>
+            Feeds For Guest<span class="sr-only">(current)</span>
+          </a>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</div>
