@@ -1,16 +1,29 @@
-<%= form_with(model: album) do |form| %>
-  <% if album.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(album.errors.count, "error") %> prohibited this album from being saved:</h2>
+<%= form_with(model: @album, url: albums_path, local: true) do |form| %>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-outline mb-4 w-100">
+        <%= form.label :name %>
+        <%= form.text_field :name,class: "form-control form-control-lg" %>
+      </div>
+      <div class="form-outline mb-4 w-100">
+        <%= form.label :is_active, 'Sharing Mode' %>
+        <%= form.select :is_active, [['Public', 1], ['Private', 0]], { selected: album.is_active ? 1 : 0 }, class: 'form-select' %>
+      </div>
 
-      <ul>
-        <% album.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
     </div>
-  <% end %>
-
+    <div class="col-6">
+      <div class="form-outline mb-4 w-100">
+        <%= form.label :des %>
+        <%= form.text_area :des,class: "form-control form-control-lg" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="field">
+      <%= form.label :images, "Upload Images", multiple: true %>
+      <%= form.file_field :images, accept: 'image/*', multiple: true %>
+    </div>
+  </div>
   <div>
     <%= form.submit %>
   </div>

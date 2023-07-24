@@ -15,10 +15,6 @@
             <h5>Change Photo</h5>
             <!-- Trang view hoặc partial view -->
             
-            <% if @photo && @photo.url.present? %>
-            <!-- Hiển thị ảnh đã chọn -->
-            <%= image_tag( @photo.url, id: 'photo-preview', class: 'preview' )%>
-            <% else %>
               <!-- Hiển thị form chọn ảnh -->
               <%= form.file_field :image, id: 'photo-upload', accept: 'image/*' %>
             <% end %>

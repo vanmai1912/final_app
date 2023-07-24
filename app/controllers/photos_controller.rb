@@ -31,17 +31,6 @@ class PhotosController < ApplicationController
     else
       render :new
     end
-    # @photo = Photo.new(photo_params)
-
-    # respond_to do |format|
-    #   if @photo.save
-    #     format.html { redirect_to photo_url(@photo), notice: "Photo was successfully created." }
-    #     format.json { render :show, status: :created, location: @photo }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @photo.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # PATCH/PUT /photos/1 or /photos/1.json
@@ -68,15 +57,11 @@ class PhotosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  
     def set_photo
       @photo = Photo.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
-    # def photo_params
-    #   params.fetch(:photo, {})
-    # end
 
     def photo_params
       params.require(:photo).permit(:name, :des, :image)

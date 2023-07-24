@@ -1,0 +1,36 @@
+<!-- app/views/photos/show.html.erb -->
+
+<div class="body-edit">
+  <div>
+    <img class="body-edit-img" src="../app/assets/images/avt2.jpg">
+  </div>
+  <div>
+    <button>
+      following
+    </button>
+    <h2><%= @user.name %></h2>
+    <div class="body-edit-item">
+      <p><span>108</span>PHOTOS</p>
+      <p><span>43</span>AMLBUM</p>
+      <p><span>22</span>FOLLOWINGS</p>
+      <p><span>13</span>FOLLOWERS</p>
+    </div>
+  </div>
+ </div>
+<div style="display: flex; flex-wrap: wrap">
+  <% @photos.each do |photo| %>
+      <div class="user-photo" >
+        <% if photo.image.attached? %>
+          <div class="user-photo-img">
+            <%= image_tag url_for(photo.image), class: 'photo-image' %>
+          </div>
+          <div style="text-align:center">
+            <p> <%= photo.name %></p>
+          </div>
+        <% else %>
+          <p>No image available.</p>
+      
+        <% end %>
+      </div>
+  <% end %>                
+</div>
