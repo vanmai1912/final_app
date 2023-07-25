@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root "photos#index"
+  # devise_for :users, controllers: {
+  #   sessions: 'users/sessions'
+  # }
   devise_for :users
   resources :albums
   resources :photos

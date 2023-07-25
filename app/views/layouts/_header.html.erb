@@ -14,7 +14,7 @@
                 <% if current_user %>
                 <div class="item-2-item ">
                     <img class="imgavt" src="https://st.quantrimang.com/photos/avatars/default.png" alt="Avatar" >
-                    <h4><%= current_user.name%></h4>
+                    <h4><%= current_user.firstname  + current_user.lastname%></h4>
                 </div>
                 <%= button_to "LogOut", destroy_user_session_path, method: :delete, class: "btn btn-small btn-primary mx-2" %>
                 <% else %>

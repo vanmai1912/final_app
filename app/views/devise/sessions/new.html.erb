@@ -1,0 +1,35 @@
+ <h2 style="color: blue; text-align: center">Fotobook Login</h2>
+  <div class="logo-fab">
+  <div class="logo-item">
+    <i class="fab fa-google"></i>
+  </div>
+  <div class="logo-item">
+    <i class="fab fa-facebook"></i>
+  </div>
+  <div class="logo-item">
+    <i class="fab fa-twitter"></i>
+  </div>
+</div>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name),  html: { class: "login" }) do |f| %>
+  <div class="logo-item">
+    <i class="fa-solid fa-circle-user"></i>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="actions ">
+    <%= f.submit "Sign in", class: "btn btn-primary" %>
+  </div>
+
+  <%= render "devise/shared/links" %>
+<% end %>
+
+

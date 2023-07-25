@@ -171,3 +171,49 @@
   width: 100%;
   height: 100%;
 }
+
+
+// edit user 
+.profile-img{
+  text-align: center;
+}
+
+
+
+// sign in
+.logo-fab {
+  margin-top: 20px;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  background-color: whihe;
+  border: 3px solid #DDDDDD;
+  border-radius: 5px;
+  margin-left: 15%;
+}
+
+.logo-item{
+  display: inline;
+}
+
+.fab {
+  font-size: 40px;
+  margin: 12px 24px;
+}
+
+.fa-circle-user{
+  font-size: 100px;
+  margin: -20px 0 20px 0;
+}
+
+.login {
+  text-align: center;
+  margin-top: 20px;
+  padding: 44px 44px 15px 44px;
+  border: 3px solid #DDDDDD;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  background-color:#EEEEEE;
+  width: 70%;
+  margin-left: 15%;
+}
