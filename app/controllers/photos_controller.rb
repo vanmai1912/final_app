@@ -3,7 +3,6 @@ class PhotosController < ApplicationController
   before_action :authenticate_user!
   # GET /photos or /photos.json
   def index
-
     @photos = current_user.photos.all
   end
 
@@ -35,14 +34,18 @@ class PhotosController < ApplicationController
 
   # PATCH/PUT /photos/1 or /photos/1.json
   def update
-    respond_to do |format|
-      if @photo.update(photo_params)
-        format.html { redirect_to photo_url(@photo), notice: "Photo was successfully updated." }
-        format.json { render :show, status: :ok, location: @photo }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
-      end
+    
+    @photo = Photo.find(params[:id])
+
+    # Xử lý ảnh mới (nếu có)
+    if params[:photo][:avatar].present?
+      @photo.avatar = params[:photo][:avatar]
+    end
+
+    if @photo.update(photo_params)
+      redirect_to @photo, notice: 'Photo was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -64,6 +67,6 @@ class PhotosController < ApplicationController
 
 
     def photo_params
-      params.require(:photo).permit(:name, :des, :image)
+      params.require(:photo).permit(:name, :des, :is_active, :avatar)
     end
 end

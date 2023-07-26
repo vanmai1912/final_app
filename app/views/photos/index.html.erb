@@ -7,13 +7,7 @@
 
 <div class="card photo-container" style="width: 49%; margin: 0.5%">
   <div style="display:flex;">
-    <% if photo.image.attached? %>
-    <div>
-      <%= image_tag url_for(photo.image), class: 'photo-image', size: '300x200' %>
-    </div>
-    <% else %>
-      <p>No image available.</p>
-    <% end %>
+    <%= image_tag photo.avatar.url if photo.avatar? %>
     <div class="card-body photo-details">
       <h5 class="card-title"><%= photo.name %></h5>
       <p class="card-text"><%= photo.des %></p>

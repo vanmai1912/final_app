@@ -1,36 +1,62 @@
 <%= form_with(model: @photo, local: true) do |form| %>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-outline mb-4 w-100">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control form-control-lg" %>
+      </div>
+      <div class="form-outline mb-4 w-100">
+        <%= form.label :is_active, 'Sharing Mode' %>
+        <%= form.select :is_active, [['Public', 1], ['Private', 0]], { selected: @photo.is_active ? 1 : 0 }, class: 'form-select' %>
+      </div>
+      <div class="col-md-4">
+        <div class="profile-img" data-controller="upload-image">
+         
 
-    <div class="row">
-      <div class="col-6">
-        <div class="form-outline mb-4 w-100">
-          <%= form.label :name %>
-          <%= form.text_field :name,class: "form-control form-control-lg" %>
-        </div>
-        <div class="form-outline mb-4 w-100">
-          <%= form.label :is_active, 'Sharing Mode' %>
-          <%= form.select :is_active, [['Public', 1], ['Private', 0]], { selected: @photo.is_active ? 1 : 0 }, class: 'form-select' %>
-        </div>
-        <div class="col-md-4">
-          <div class="profile-img" data-controller="upload-image">
-            <h5>Change Photo</h5>
-            <!-- Trang view hoặc partial view -->
-            
-              <!-- Hiển thị form chọn ảnh -->
-              <%= form.file_field :image, id: 'photo-upload', accept: 'image/*' %>
+            <% if @photo.avatar? %>
+              <%= image_tag @photo.avatar.url, alt: @photo.name, class: "photo-image", id: "imgPhoto", style: 'height:150px;width:150px', data: { target: 'upload-image.avatar' } %>
+            <% else %>
+              <%= form.file_field :avatar, id: 'photo-upload', accept: 'image/*' %>
             <% end %>
 
-
-          </div>
+            <% if action_name == 'edit' %>
+              <%= form.label :img, "Change Photo", class: "col-6 col-form-label label-avatar" %>
+              <%= form.file_field :img,
+                                class: "d-none",
+                                placeholder: 'Update picture',
+                                data: { action: 'change->upload-image#handleChange' },
+                                direct_upload: true,
+                                onchange: "uploadImage(event)" %>
+            <% end %>
         </div>
       </div>
-      <div class="col-6">
-        <div class="form-outline mb-4 w-100">
-          <%= form.label :des %>
-          <%= form.text_area :des, class: "form-control form-control-lg" %>
-        </div>
+    </div>
+    <div class="col-6">
+      <div class="form-outline mb-4 w-100">
+        <%= form.label :des %>
+        <%= form.text_area :des, class: "form-control form-control-lg" %>
       </div>
+    </div>
   </div>
   <div class="actions">
-    <%= form.submit :save %>
+    <%= form.submit :save, class: "btn btn-primary"  %>
   </div>
 <% end %>
+
+<script>
+  function uploadImage(event) {
+    const input = event.target;
+    const file = input.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = function() {
+        const img = document.getElementById("imgPhoto");
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+</script>

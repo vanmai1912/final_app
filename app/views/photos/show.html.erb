@@ -1,14 +1,12 @@
-<!-- app/views/photos/show.html.erb -->
-<h1>Photo Details</h1>
+<h1><%= @photo.name %></h1>
+<%= image_tag @photo.avatar.url if @photo.avatar? %>
 
-<% if @photo.image.attached? %>
-  <div>
-    <%= image_tag url_for(@photo.image), class: 'photo-image', size: '300x200' %>
-  </div>
-<% else %>
-  <p>No image available.</p>
-<% end %>
+<p><strong>Description:</strong></p>
+<p><%= @photo.des %></p>
 
-<p>Name: <%= @photo.name %></p>
-<p>Description: <%= @photo.des %></p>
+<p><strong>Sharing Mode:</strong></p>
+<p><%= @photo.is_active ? 'Public' : 'Private' %></p>
 
+
+<%= link_to 'Edit', edit_photo_path(@photo) %>
+<%= link_to 'Back', photos_path %>

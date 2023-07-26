@@ -31,6 +31,9 @@ gem 'bootstrap-sass'
 
 gem 'jquery-rails'
 
+gem 'kaminari'
+
+gem 'carrierwave'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
