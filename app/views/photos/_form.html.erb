@@ -13,10 +13,10 @@
         <div class="profile-img" data-controller="upload-image">
          
 
-            <% if @photo.avatar? %>
-              <%= image_tag @photo.avatar.url, alt: @photo.name, class: "photo-image", id: "imgPhoto", style: 'height:150px;width:150px', data: { target: 'upload-image.avatar' } %>
+            <% if @photo.image? %>
+              <%= image_tag @photo.image.url, alt: @photo.name, class: "photo-image", id: "imgPhoto", style: 'height:150px;width:150px', data: { target: 'upload-image.avatar' } %>
             <% else %>
-              <%= form.file_field :avatar, id: 'photo-upload', accept: 'image/*' %>
+              <%= form.file_field :image, id: 'photo-upload', accept: 'image/*' %>
             <% end %>
 
             <% if action_name == 'edit' %>

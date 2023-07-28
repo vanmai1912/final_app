@@ -1,17 +1,15 @@
-<!-- app/views/albums/show.html.erb -->
+<p style="color: green"><%= notice %></p>
 <h1><%= @album.name %></h1>
 
-<% if @album.images.attached? %>
-  <div class="album-images">
-    <% @album.images.each do |image| %>
-      <%= image_tag image, class: "album-image" %>
-      <h1>Cách...................</h1>
+<h2>Ảnh trong album:</h2>
+<% if @photos.any? %>
+  <ul>
+    <% @photos.each do |photo| %>
+      <li>
+        <%= image_tag photo.image.url  if photo.image?%>
+      </li>
     <% end %>
-    
-  </div>
+  </ul>
 <% else %>
-  <p>No images in this album.</p>
+  <p>Album không có ảnh.</p>
 <% end %>
-
-
-<%= link_to 'Back', albums_path %>

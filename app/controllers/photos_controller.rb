@@ -38,8 +38,8 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
 
     # Xử lý ảnh mới (nếu có)
-    if params[:photo][:avatar].present?
-      @photo.avatar = params[:photo][:avatar]
+    if params[:photo][:image].present?
+      @photo.avatar = params[:photo][:image]
     end
 
     if @photo.update(photo_params)
@@ -67,6 +67,6 @@ class PhotosController < ApplicationController
 
 
     def photo_params
-      params.require(:photo).permit(:name, :des, :is_active, :avatar)
+      params.require(:photo).permit(:name, :des, :is_active, :image)
     end
 end

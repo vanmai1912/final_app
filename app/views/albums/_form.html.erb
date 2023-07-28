@@ -1,4 +1,4 @@
-<%= form_with(model: @album, url: albums_path, local: true) do |form| %>
+<%= form_with(model: @album, url: albums_path) do |form| %>
   <div class="row">
     <div class="col-6">
       <div class="form-outline mb-4 w-100">
@@ -20,8 +20,10 @@
   </div>
   <div class="row">
     <div class="field">
-      <%= form.label :images, "Upload Images", multiple: true %>
-      <%= form.file_field :images, accept: 'image/*', multiple: true %>
+  
+      <%= form.label :images %>
+      <%= form.file_field :images, multiple: true %>
+    
     </div>
   </div>
   <div>

@@ -7,7 +7,7 @@
 
 <div class="card photo-container" style="width: 49%; margin: 0.5%">
   <div style="display:flex;">
-    <%= image_tag photo.avatar.url if photo.avatar? %>
+    <%= image_tag photo.image.url if photo.image? %>
     <div class="card-body photo-details">
       <h5 class="card-title"><%= photo.name %></h5>
       <p class="card-text"><%= photo.des %></p>

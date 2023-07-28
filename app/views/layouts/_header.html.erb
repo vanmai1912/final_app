@@ -1,36 +1,37 @@
 
-
 <div class="header container-fluid text-center">
         <div class="row" >
           <div class="col">
-              <h4 style="text-align: right!important;">Fotobook</h3>
+              <h4 style="text-align: right!important; font-size: 30px">Fotobook</h3>
           </div>
           <div class="col-8">
-            <div class="header-item-2">
+            <div class="header-item-2" style="height: 100%">
               
                 <div>            
-                    <input class="header-input" type="text" placeholder="   Search photo/albums">
+                    <input class="header-input" style=" height: 100%" type="text" placeholder="   Search photo/albums">
                 </div>
                 <% if current_user %>
                 <div class="item-2-item ">
+                    <div style="display: flex;">
                     <img class="imgavt" src="https://st.quantrimang.com/photos/avatars/default.png" alt="Avatar" >
-                    <h4><%= current_user.firstname  + current_user.lastname%></h4>
+                    <h4 style= "font-size: 20px; margin-top: 10px"><%= current_user.firstname  + current_user.lastname%></h4>
+                    </div>
                 </div>
-                <%= button_to "LogOut", destroy_user_session_path, method: :delete, class: "btn btn-small btn-primary mx-2" %>
-                <% else %>
-                        
-                <%= link_to "LogIn", new_user_session_path, class: "nav-link"  %>
+               
                 <% end %>
             </div>
           </div>
-          <div class="col">
+          <div class="col" style="height: 100%">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div >
-                        
-                        
-                       
+                        <% if current_user %>
+                            <%= button_to "Logout", destroy_user_session_path, method: :delete, style: "color: white; font-size: 20px", class: "btn btn-small btn-primary mx-2" %>
+                        <% else %>
+                            <%= link_to "Login", new_user_session_path, class: "nav-link", style: "color: white; font-size: 20px"  %>
+                        <% end %>
                     </div>
                 </div>
           </div>
         </div>
-    </div>
+</div>
+

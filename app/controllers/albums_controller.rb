@@ -9,11 +9,13 @@ class AlbumsController < ApplicationController
   # GET /albums/1 or /albums/1.json
   def show
     @album = Album.find(params[:id])
+    @photos = @album.photos.all
   end
 
   # GET /albums/new
   def new
     @album = Album.new
+    
   end
 
   # GET /albums/1/edit
@@ -24,13 +26,10 @@ class AlbumsController < ApplicationController
 
   def create
     @album = current_user.albums.new(album_params)
+
     if @album.save
-      if params[:album][:images].present?
-        params[:album][:images].each do |image|
-          @album.images.attach(image)
-        end
-        redirect_to @album, notice: 'Album was successfully created.'
-      end
+      save_photos
+      redirect_to @album, notice: 'Item was successfully created.'
     else
       render :new
     end
@@ -38,7 +37,12 @@ class AlbumsController < ApplicationController
 
   # PATCH/PUT /albums/1 or /albums/1.json
   def update
- 
+      @album = Album.find(params[:id])
+      if @album.update(album_params)
+        redirect_to @album, notice: 'Album was successfully updated.'
+      else
+        render :edit
+      end
   end
 
   # DELETE /albums/1 or /albums/1.json
@@ -52,7 +56,19 @@ class AlbumsController < ApplicationController
   end
 
   def album_params
-    params.require(:album).permit(:name, :is_active, :des, images: [])
+    params.require(:album).permit(:name, :is_active, :des)
   end
+
+
+  def save_photos
+    valid_images = params[:album][:images].reject(&:blank?)
+    unless valid_images.blank?
+      valid_images.each do |image|
+        @album.photos.create(image: image, user_id: @album.user_id)
+      end
+    end
+  end
+ 
+
     
 end

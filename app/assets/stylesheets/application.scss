@@ -19,15 +19,18 @@
 
 
 .header{
-    padding: 20px 10px 10px 10px;
-    background-color: #6495ED;
+    padding: 10px;
+    background-color: #1877f2;
     color: white;
+    justify-content: center;
 }
 
 .header-input{
     width: 30vw;
+    height: 100%;
     border-radius: 5px;
     color: black;
+    font-size: 15px;
     
 }
 
@@ -52,8 +55,9 @@
 
 .imgavt{
     width: auto;
-    height: 30px;
+    height: 40px;
     border-radius: 50%;
+    margin-right: 5px;
 }
 
 
@@ -216,4 +220,9 @@
   background-color:#EEEEEE;
   width: 70%;
   margin-left: 15%;
+}
+
+.user-login {
+  width: 100%;
+  height: 25px;
 }
