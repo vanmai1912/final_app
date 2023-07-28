@@ -1,51 +1,7 @@
 
 <h2>Edit <%= resource_name.to_s.humanize %> Profile</h2>
 
- <div class="row text-center">
-          <div class="col">
-            
-          </div>
-          <div class="col ">
-            <h2 style="color: blue">Fotobook Signup</h2>
-            <div class="logo-fab">
-              <div class="logo-item">
-                <i class="fab fa-google"></i>
-              </div>
-              <div class="logo-item">
-                <i class="fab fa-facebook"></i>
-              </div>
-              <div class="logo-item">
-                <i class="fab fa-twitter"></i>
-              </div>
-              
-            </div>
-            <form class="login">
-              <div class="mb-3 text-start">
-                <label for="firstname" class="form-label ">First Name</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name">
-              </div>
-              <div class="mb-3 text-start">
-                <label for="lastname" class="form-label ">Last Name</label>
-                <input type="password" class="form-control" id="lastname" name="lastname" placeholder="Last Name">
-              </div>
-              <div class="mb-3 text-start">
-                <label for="newpassword" class="form-label ">New Password</label>
-                <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="New Password">
-              </div>
-              <div class="mb-3 text-start">
-                <label for="confirmpassword" class="form-label ">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password">
-              </div>
-              <button type="submit" class="btn btn-primary">Sign Up</button>
-            </form>
-            
-            
-          </div>
-          <div class="col">
-            
-        </div>
-      </div>
-<hr/>
+ 
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class:"d-flex flex-column align-items-center", method: :put }) do |f| %>
     
