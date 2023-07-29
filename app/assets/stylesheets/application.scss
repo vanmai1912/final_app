@@ -69,6 +69,7 @@
     cursor: pointer;
     width: 100%;
     height: auto;
+    
   }
   
   .photo-details {
@@ -233,4 +234,29 @@
 .avatar-image {
   width: 50px;
   height: 50px;
+}
+
+
+
+// homes#show
+.profile-album-card {
+  position: relative;
+}
+
+.album-photo-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.rotate-image-0 {
+  transform: rotate(2deg);
+}
+
+.rotate-image-1 {
+  transform: rotate(4deg);
+}
+
+.rotate-image-2 {
+  transform: rotate(6deg);
 }

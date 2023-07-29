@@ -1,0 +1,93 @@
+<div class="body-edit">
+        <div>
+            <% if @user.avatar_attachment %>
+                <%= image_tag(@user.avatar, alt: "User Avatar", class:" rounded-circle", ) %>
+            <% else %>
+                <%= image_tag('user.jpg', alt: "User Avatar", class: " rounded-circle", style: 'height:200px;width:200px') %>
+            <% end %>
+        </div>
+        <div>
+            <button>
+                following
+            </button>
+            <h2 style="font-size: 40px"> <%= @user.firstname %> <%= @user.lastname %></h2>
+            <div class="body-edit-item">
+            
+            <p> <%= link_to:"view_user", class: "mx-1 text-decoration-none fs-4", style: "color: black;" do %>
+                <span ><%= @photos.size %> </span>PHOTOS
+            <% end %>
+            </p>
+            <p> <%= link_to:"view_user_album", class: "mx-1 text-decoration-none fs-4", style: "color: black;" do %>
+                <span ><%= @albums.size %> </span>ALBUM
+            <% end %>
+            </p>
+            <p> <%= link_to:"root", class: "mx-1 text-decoration-none fs-4", style: "color: black;" do %>
+                <span ><%= @followings.size %> </span>FOLLOWINGS
+            <% end %>
+            </p>
+            <p> <%= link_to:"view_user_follower", class: "mx-1 text-decoration-none fs-4", style: "color: blue;" do %>
+                <span ><%= @followers.size %> </span>FOLLOWERS
+                <% end %>
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div  class="row">
+    
+<% @followers.each do |f| %>
+        <div class="col-3">
+            <div class="user-photo", style="text-align:center; height: 300px; width: 95%;box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); margin: 2% " >
+                <div class="mt-5">
+                <% if f.avatar_attachment %>
+                    <%= image_tag(f.avatar, alt: "User Avatar", class:"mt-5 rounded-circle " ) %>
+                <% else %>
+                    <%= image_tag('user.jpg', alt: "User Avatar", class: "mt-5 rounded-circle", style: 'height:120px;width:120px') %>
+                <% end %>
+                </div>
+                <div>
+                    <h2 style="font-size: 20px"> <%= f.firstname %> <%= f.lastname %></h2>
+                    <div style="display:flex; justify-content: center">
+                        <div style= "color: blue; margin-right: 12px">
+                            <h1 style="text-align:center" ><%= f.photos.size %> </h1>
+                            <p> PHOTO </p>
+                        </div>
+                        <div style= "color: blue; margin-left: 12px">
+                            <h1 style="text-align:center"  ><%= f.albums.size %> </h1>
+                            <p> ALBUM </p>
+                        </div>
+                    </div>
+                </div>
+                <%= link_to "Follow", root_path, class: "btn btn-primary text-primary border-blue bg-white",data: { turbo_method: :post }%>
+            </div>
+        </div>
+    <% end %>
+    <% @followers.each do |f| %>
+        <div class="col-3">
+            <div class="user-photo", style="text-align:center; height: 300px; width: 95%;box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); margin: 2% " >
+                <div class="mt-5">
+                <% if f.avatar_attachment %>
+                    <%= image_tag(f.avatar, alt: "User Avatar", class:"mt-5 rounded-circle " ) %>
+                <% else %>
+                    <%= image_tag('user.jpg', alt: "User Avatar", class: "mt-5 rounded-circle", style: 'height:120px;width:120px') %>
+                <% end %>
+                </div>
+                <div>
+                    <h2 style="font-size: 20px"> <%= f.firstname %> <%= f.lastname %></h2>
+                    <div style="display:flex; justify-content: center">
+                        <div style= "color: blue; margin-right: 12px">
+                            <h1 style="text-align:center" ><%= f.photos.size %> </h1>
+                            <p> PHOTO </p>
+                        </div>
+                        <div style= "color: blue; margin-left: 12px">
+                            <h1 style="text-align:center"  ><%= f.albums.size %> </h1>
+                            <p> ALBUM </p>
+                        </div>
+                    </div>
+                </div>
+                <%= link_to "Follow", root_path, class: "btn btn-primary text-primary border-blue bg-white",data: { turbo_method: :post }%>
+            </div>
+        </div>
+    <% end %>
+</div>

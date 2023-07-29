@@ -1,0 +1,43 @@
+<div class="row justify-content-center mt-5 mb-4">
+    <div class="d-flex justify-content-center">
+        <button id="photoButton" class="btn btn-primary text-white" style="background-color: white;">
+            <%= link_to "PHOTOS", root_path, class: "text-decoration-none fs-4"%>
+        </button>
+        <button id="albumButton" class="btn btn-secondary  bg-primary">
+            <%= link_to "ALBUMS", view_albums_path, class: "text-white text-decoration-none fs-4" %>
+        </button>
+    </div>
+</div>
+
+<div class="row" >
+    <% @albums.each do |album| %>
+        <div class="col-6", style="height: 250px">
+            <div class="row", style="margin: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); padding:5px " >
+                <div class="col-5 profile-album-card ">
+                    <% album.photos.each_with_index do |photo, index| %>
+                        <div class= "album-photo-image">
+                            <%= image_tag(photo.image.url, alt: "Photo Picture", class: "rotate-image-#{index}" )%>
+                        </div>
+                    <% end %>
+                </div>
+                <div class="col-2">
+                </div>
+                <div class="col-5", style="height: 250px">
+                    <div style="display: flex; align-items: center;">
+                        <% if album.user.avatar_attachment %>
+                            <%= image_tag(photo.user.avatar, alt: "User Avatar", class: "avatar-image rounded-circle") %>
+                        <% else %>
+                            <%= image_tag('user.jpg', alt: "User Avatar", class: "avatar-image rounded-circle") %>
+                        <% end %>
+                        <%= link_to "#{album.user.firstname} #{album.user.lastname}", view_user_path(album.user), class: "mx-1 text-decoration-none fs-4" %>
+                    </div>
+                    <h5 class="card-title", style=" margin-top: 15px" ><%= album.name %></h5>
+                    <p class="card-text"><%= album.des %></p>
+                </div>
+                
+               
+            </div>  
+        </div>
+        
+    <% end %>
+</div>

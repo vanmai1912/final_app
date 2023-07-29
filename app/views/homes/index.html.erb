@@ -1,20 +1,20 @@
 
-  <div class="row justify-content-center mt-5">
+<div class="row justify-content-center mt-5 mb-4">
     <div class="d-flex justify-content-center">
-    <button id="photoButton" class="btn btn-secondary  bg-primary">
-        <%= link_to "PHOTOS", root_path, class: "text-white text-decoration-none fs-4"%>
-    </button>
-    <button id="albumButton" class="btn btn-primary text-white" style="background-color: white;">
-        <%= link_to "ALBUMS", view_albums_path, class: "text-decoration-none fs-4" %>
-    </button>
+        <button id="photoButton" class="btn btn-secondary  bg-primary">
+            <%= link_to "PHOTOS", root_path, class: "text-white text-decoration-none fs-4"%>
+        </button>
+        <button id="albumButton" class="btn btn-primary text-white" style="background-color: white;">
+            <%= link_to "ALBUMS", view_albums_path, class: "text-decoration-none fs-4" %>
+        </button>
   
     </div>
     
 
-  </div>
+</div>
 
 
-    <div class="row" >
+<div class="row" >
     <% @photos.each do |photo| %>
         <div class="col-6" >
             <div class="row", style="margin: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); padding:5px " >

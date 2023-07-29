@@ -15,16 +15,15 @@
 
   <body>
   <%= render 'layouts/header' %>
-    <div class="row" >
+    <div class="row"  >
       
         <% if controller_name != 'sessions' && controller_name != 'registrations' %>
-        <div class="col-2" style= "background-color: #e5e5e5" >
-          <%= render 'layouts/left' %>
-        </div>
+          <div class="col-2" style= "background-color: #e5e5e5" >
+            <%= render 'layouts/left' %>
+          </div>
         <% else %>
-        <div class="col-2" >
-          
-        </div>
+          <div class="col-2" >
+          </div>
         <% end %>
     
       
