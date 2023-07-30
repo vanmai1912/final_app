@@ -16,15 +16,17 @@
   <body>
   <%= render 'layouts/header' %>
     <div class="row"  >
-      
-        <% if controller_name != 'sessions' && controller_name != 'registrations' %>
-          <div class="col-2" style= "background-color: #e5e5e5" >
-            <%= render 'layouts/left' %>
+
+        <% if controller_name == 'sessions' || (controller_name == 'registrations' && action_name == 'new') %>
+          <div class="col-2">
+           
           </div>
         <% else %>
-          <div class="col-2" >
+          <div class="col-2" style= "background-color: #e5e5e5">
+            <%= render 'layouts/left' %>
           </div>
         <% end %>
+
     
       
       
@@ -32,14 +34,14 @@
         <%= yield %>
       </div>
       
-      <% if controller_name != 'sessions' && controller_name != 'registrations' %>
-        <div class="col-2" style= "background-color: #e5e5e5" >
-          <%= render 'layouts/right' %>
+        <% if controller_name == 'sessions' || (controller_name == 'registrations' && action_name == 'new') %>
+        <div class="col-2">
+        
         </div>
         <% else %>
-        <div class="col-2" >
-          
-        </div>
+          <div class="col-2" style= "background-color: #e5e5e5">
+            <%= render 'layouts/right' %>
+          </div>
         <% end %>
     </div>
   </body>

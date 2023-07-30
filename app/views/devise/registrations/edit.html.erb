@@ -10,8 +10,9 @@
 
         <div data-controller="upload_file">
           <div class="avatar">
-            <% if resource.avatar.attached? %>
-              <%= image_tag(resource.avatar, alt: "", class: "avatar-image", id: "avatarUser",style: 'height:150px;width:150px') %>
+         
+            <% if resource.image? %>
+              <%= image_tag(resource.image.url, alt: "", class: "avatar-image", id: "avatarUser",style: 'height:150px;width:150px') %>
             <%else %>
               <%= image_tag('user.jpg', alt: "", class: "avatar-image", id: "avatarUser",style: 'height:150px;width:150px') %>
             <% end %>
@@ -74,3 +75,4 @@
     </div>
   <% end %>
 <hr/>
+

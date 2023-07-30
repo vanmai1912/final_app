@@ -1,0 +1,11 @@
+<% if current_user.id.to_s == params[:id] %>
+    <% if @followers.include?(current_user) %>
+        <%= link_to "Following", root_path, class: "btn ",data: { turbo_method: :post }, style: "border-radius: 10px; border: 1px solid orangered; margin-left: 10px; background: linear-gradient(to right, #FFDAB9, #FF4500); color: white;" %>
+    <% else %>
+        <%= link_to "unfollow", edit_user_registration_path, class: "btn ", style: "border-radius: 10px; border: 1px solid orangered; margin-left: 10px; background: linear-gradient(to right, #FFDAB9, #FF4500); color: white;"  %>
+    <% end %>
+<% elsif @followers.include?(current_user)  %>
+    <%= link_to "Following", root_path, class: "btn ",data: { turbo_method: :post }, style: "border-radius: 10px; border: 1px solid orangered; margin-left: 10px; background: linear-gradient(to right, #FFDAB9, #FF4500); color: white;" %>
+<% else %>
+    <%= link_to "Follow", root_path, class: "btn ",data: { turbo_method: :post }, style: "border-radius: 10px; border: 1px solid orangered; margin-left: 10px; background-color: white; color: orangered;" %>
+<% end %>

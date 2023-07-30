@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :photos
   has_many :albums
-  has_one_attached :avatar
+  mount_uploader :image, ImageUploader
 
   has_many :follows_as_follower, class_name: "Follow", foreign_key: "follower_id"
   has_many :follows_as_following, class_name: "Follow", foreign_key: "following_id"

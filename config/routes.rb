@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   get '/users/:id/show', to: 'users#view_user', as: :view_user
   get '/users/:id/albums', to: 'users#view_user_album', as: :view_user_album
   get '/users/:id/followers', to: 'users#view_user_follower', as: :view_user_follower
-
+  get '/users/:id/followings', to: 'users#view_user_following', as: :view_user_following
+  post 'users/follow/:id', to: 'users#user_follow', as: :user_follow
+  delete 'users/follow/:id', to: 'users#user_unfollow', as: :user_unfollow
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

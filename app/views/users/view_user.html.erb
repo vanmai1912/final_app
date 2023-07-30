@@ -1,39 +1,6 @@
+<%= render 'users/header' %>
 
-<div class="body-edit">
-  <div>
-    <% if @user.avatar_attachment %>
-      <%= image_tag(@user.avatar, alt: "User Avatar", class:" rounded-circle") %>
-    <% else %>
-        <%= image_tag('user.jpg', alt: "User Avatar", class: " rounded-circle", style: 'height:200px;width:200px') %>
-    <% end %>
-  </div>
-  <div>
-    <button>
-      following
-    </button>
-    <h2 style="font-size: 40px"> <%= @user.firstname %> <%= @user.lastname %></h2>
-    <div class="body-edit-item">
-      
-      <p> <%= link_to:"view_user", class: "mx-1 text-decoration-none fs-4", style: "color: blue;" do %>
-          <span ><%= @photos.size %> </span>PHOTOS
-        <% end %>
-      </p>
-      <p> <%= link_to:"view_user_album", class: "mx-1 text-decoration-none fs-4", style: "color: black;" do %>
-          <span ><%= @albums.size %> </span>ALBUM
-        <% end %>
-      </p>
-      <p> <%= link_to:"root", class: "mx-1 text-decoration-none fs-4", style: "color: black;" do %>
-          <span ><%= @followings.size %> </span>FOLLOWINGS
-        <% end %>
-      </p>
-      <p> <%= link_to:"view_user_follower", class: "mx-1 text-decoration-none fs-4", style: "color: black;" do %>
-          <span ><%= @followers.size %> </span>FOLLOWERS
-        <% end %>
-      </p>
-  
-    </div>
-  </div>
- </div>
+
 <div style="display: flex; flex-wrap: wrap">
   <% @photos.each do |photo| %>
       <div class="user-photo" >

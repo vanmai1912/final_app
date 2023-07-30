@@ -25,8 +25,8 @@
                 </div>
                 <div class="col-5">
                     <div style="display: flex; align-items: center;">
-                        <% if photo.user.avatar_attachment %>
-                            <%= image_tag(photo.user.avatar, alt: "User Avatar", class: "avatar-image rounded-circle") %>
+                        <% if photo.user.image? %>
+                            <%= image_tag(photo.user.image.url, alt: "User Avatar", class: "avatar-image rounded-circle") %>
                         <% else %>
                             <%= image_tag('user.jpg', alt: "User Avatar", class: "avatar-image rounded-circle") %>
                         <% end %>
