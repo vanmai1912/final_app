@@ -1,7 +1,72 @@
 
 <%= render 'users/header' %>
+<div style="display:flex; justify-content: right;">
+<% if current_user.id.to_s == params[:id] %>
+  <%= link_to "Add Album", new_album_path, class: "btn btn-primary text-white border-blue bg-blue", style: "border-radius: 10px; margin-right: 10px;"  %>
+<% end %>
+</div>
 <div  class="row">
+<% if current_user.id.to_s == params[:id] %>
+
+
     <% @albums.each do |album| %>
+        <% if album.is_active == true %>
+            <div class="col-3">
+                <div class="", style="margin: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); padding:5px; height: 250px " >
+                    <div class="profile-album-card ">
+                        <% album.photos.each_with_index do |photo, index| %>
+                            <div class= "album-photo-image">
+                                <%= image_tag(photo.image.url, alt: "Photo Picture", class: "img-thumbnail rotate-image-#{index}" )%>
+                            </div>
+                        <% end %>
+                       
+                    
+                    </div>
+                    <div class= "circle-total-photos">
+                    <h2 style="text-align: center; margin: 10px 0 0 0"> <%= album.photos.size %> </h2> 
+                    <p> Photos </p> 
+                    </div>
+                    
+                    
+                                
+                </div> 
+                <div style="font-size: 20px; text-align: center">
+                    <p class="card-text"><%= album.name %></p> 
+                </div> 
+            </div>
+
+        <% else %>
+
+            <div class="col-3">
+                <div class="", style="margin: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); padding:5px; height: 250px " >
+                    <div class="profile-album-card ">
+                        <% album.photos.each_with_index do |photo, index| %>
+                            <div class= "album-photo-image">
+                                <%= image_tag(photo.image.url, alt: "Photo Picture", class: "img-thumbnail rotate-image-#{index}" )%>
+                            </div>
+                        <% end %>
+                        <i class="fa-solid fa-lock lock-icon"></i>
+                    
+                    </div>
+                    <div class= "circle-total-photos">
+                    <h2 style="text-align: center; margin: 10px 0 0 0"> <%= album.photos.size %> </h2> 
+                    <p> Photos </p> 
+                    </div>
+                    
+                    
+                                
+                </div> 
+                <div style="font-size: 20px; text-align: center">
+                    <p class="card-text"><%= album.name %></p> 
+                </div> 
+            </div>
+
+        <% end %>
+
+    <% end %> 
+
+<% else %>
+    <% @albums_pub.each do |album| %>
         <div class="col-3">
             <div class="", style="margin: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); padding:5px; height: 250px " >
                 <div class="profile-album-card ">
@@ -10,51 +75,23 @@
                             <%= image_tag(photo.image.url, alt: "Photo Picture", class: "img-thumbnail rotate-image-#{index}" )%>
                         </div>
                     <% end %>
-                   
+               
+                
                 </div>
-             
+                <div class= "circle-total-photos">
+                <h2 style="text-align: center; margin: 10px 0 0 0"> <%= album.photos.size %> </h2> 
+                <p> Photos </p> 
+                </div>
+                
+                
+                            
             </div> 
             <div style="font-size: 20px; text-align: center">
                 <p class="card-text"><%= album.name %></p> 
             </div> 
         </div>
     <% end %> 
-    <% @albums.each do |album| %>
-        <div class="col-3">
-            <div class="", style="margin: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); padding:5px; height: 250px " >
-                <div class="profile-album-card ">
-                    <% album.photos.each_with_index do |photo, index| %>
-                        <div class= "album-photo-image">
-                            <%= image_tag(photo.image.url, alt: "Photo Picture", class: "img-thumbnail rotate-image-#{index}" )%>
-                        </div>
-                    <% end %>
-                   
-                </div>
-             
-            </div> 
-            <div style="font-size: 20px; text-align: center">
-                <p class="card-text"><%= album.name %></p> 
-            </div> 
-        </div>
-    <% end %> 
-    <% @albums.each do |album| %>
-        <div class="col-3">
-            <div class="", style="margin: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); padding:5px; height: 250px " >
-                <div class="profile-album-card ">
-                    <% album.photos.each_with_index do |photo, index| %>
-                        <div class= "album-photo-image">
-                            <%= image_tag(photo.image.url, alt: "Photo Picture", class: "img-thumbnail rotate-image-#{index}" )%>
-                        </div>
-                    <% end %>
-                   
-                </div>
-             
-            </div> 
-            <div style="font-size: 20px; text-align: center">
-                <p class="card-text"><%= album.name %></p> 
-            </div> 
-        </div>
-    <% end %> 
+<% end %>
     
               
 </div>

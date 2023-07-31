@@ -18,7 +18,7 @@
                     <% else %>
                         <%= image_tag('user.jpg', alt: "User Avatar", class: "imgavt  rounded-circle") %>
                     <% end %>
-                    <h4 style= "font-size: 20px; margin-top: 10px"><%= current_user.firstname %> <%=current_user.lastname%></h4>
+                    <%= link_to "#{current_user.firstname} #{current_user.lastname}", view_user_path(current_user), class: "text-decoration-none", style: "font-size: 20px; margin-top: 10px; color: white" %>
                     </div>
                 </div>
                

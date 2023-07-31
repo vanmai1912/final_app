@@ -2,10 +2,18 @@
 <div class="row justify-content-center mt-5 mb-4">
     <div class="d-flex justify-content-center">
         <button id="photoButton" class="btn btn-secondary  bg-primary">
-            <%= link_to "PHOTOS", root_path, class: "text-white text-decoration-none fs-4"%>
+            <% if current_page?(root_path) %>
+                <%= link_to "PHOTOS", root_path, class: "text-white text-decoration-none fs-4"%>
+            <% else %>
+                <%= link_to "PHOTOS", view_discover_index_path, class: "text-white text-decoration-none fs-4" %>
+            <% end %>
         </button>
         <button id="albumButton" class="btn btn-primary text-white" style="background-color: white;">
-            <%= link_to "ALBUMS", view_albums_path, class: "text-decoration-none fs-4" %>
+            <% if current_page?(root_path) %>
+                <%= link_to "ALBUMS", view_albums_path, class: "text-decoration-none fs-4" %>
+            <% else %>
+                <%= link_to "ALBUMS", view_discover_show_path, class: "text-decoration-none fs-4" %>
+            <% end %>
         </button>
   
     </div>
@@ -31,6 +39,16 @@
                             <%= image_tag('user.jpg', alt: "User Avatar", class: "avatar-image rounded-circle") %>
                         <% end %>
                         <%= link_to "#{photo.user.firstname} #{photo.user.lastname}", view_user_path(photo.user), class: "mx-1 text-decoration-none fs-4" %>
+                        <% if current_page?(root_path) %>
+                
+                        <% else %>
+                            <%= form_with url: user_follow_path(current_user.id), method: :post, id: "follow-form", style: "display: none;" do |form| %>
+                                <%= form.hidden_field :user_id, value: photo.user_id %>
+                                <%= form.submit "Follow", class: "btn follow-button", style: "border-radius: 10px; border: 1px solid orangered; margin-left: 10px; background-color: white; color: orangered;" %>
+                            <% end %>
+                        <% end %>
+                        
+
                     </div>
                     <h5 class="card-title", style=" margin-top: 15px" ><%= photo.name %></h5>
                     <p class="card-text"><%= photo.des %></p>

@@ -1,17 +1,26 @@
 <div class="row justify-content-center mt-5 mb-4">
     <div class="d-flex justify-content-center">
-        <button id="photoButton" class="btn btn-primary text-white" style="background-color: white;">
-            <%= link_to "PHOTOS", root_path, class: "text-decoration-none fs-4"%>
+        <button id="photoButton" class="btn btn-secondary  bg-primary">
+            <% if current_page?(root_path) %>
+                <%= link_to "PHOTOS", root_path, class: "text-white text-decoration-none fs-4"%>
+            <% else %>
+                <%= link_to "PHOTOS", view_discover_index_path, class: "text-white text-decoration-none fs-4" %>
+            <% end %>
         </button>
-        <button id="albumButton" class="btn btn-secondary  bg-primary">
-            <%= link_to "ALBUMS", view_albums_path, class: "text-white text-decoration-none fs-4" %>
+        <button id="albumButton" class="btn btn-primary text-white" style="background-color: white;">
+            <% if current_page?(root_path) %>
+                <%= link_to "ALBUMS", view_albums_path, class: "text-decoration-none fs-4" %>
+            <% else %>
+                <%= link_to "ALBUMS", view_discover_show_path, class: "text-decoration-none fs-4" %>
+            <% end %>
         </button>
+
     </div>
 </div>
 
 <div class="row" >
     <% @albums.each do |album| %>
-        <div class="col-6", style="height: 250px">
+        <div class="col-6", style="height: 300px;">
             <div class="row", style="margin: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); padding:5px " >
                 <div class="col-5 profile-album-card ">
                     <% album.photos.each_with_index do |photo, index| %>

@@ -10,40 +10,70 @@
     <%= render "users/button"%>
     <h2 style="font-size: 40px"> <%= @user.firstname %> <%= @user.lastname %></h2>
     <div class="body-edit-item" >
+
     <p>
-    <%= link_to:"view_user", class: "btn mx-1 text-decoration-none fs-4", style: "color: black;" do %>
-        <span ><%= @photos.size %> </span>PHOTOS
+    <% if current_page?(view_user_path) %>
+      <%= link_to:"view_user", class: "btn mx-1 text-decoration-none fs-4", style: "color: blue;" do %>
+          <span ><%= @photos.size %> </span>PHOTOS
+      <% end %>
+    
+        <% else %>
+        <%= link_to:"view_user", class: "btn mx-1 text-decoration-none fs-4", style: "color: black;" do %>
+          <span ><%= @photos.size %> </span>PHOTOS
+      <% end %>
     <% end %>
     </p>
-    <p> <%= link_to:"view_user_album", class: "btn mx-1 text-decoration-none fs-4", style: "color: black;" do %>
-        <span ><%= @albums.size %> </span>ALBUM
+
+    <p>
+    <% if current_page?(view_user_album_path) %>
+       <%= link_to:"view_user_album", class: "btn mx-1 text-decoration-none fs-4", style: "color: blue;" do %>
+          <span ><%= @albums.size %> </span>ALBUMS
+      <% end %>
+    
+      <% else %>
+        <%= link_to:"view_user_album", class: "btn mx-1 text-decoration-none fs-4", style: "color: black;" do %>
+          <span ><%= @albums.size %> </span>ALBUMS
+      <% end %>
     <% end %>
     </p>
-    <p> <%= link_to:"view_user_following", class: "btn mx-1 text-decoration-none fs-4", style: "color: black;" do %>
-        <span ><%= @followings.size %> </span>FOLLOWINGS
+    
+
+    <p>
+    <% if current_page?(view_user_following_path) %>
+        <%= link_to:"view_user_following", class: "btn mx-1 text-decoration-none fs-4", style: "color: blue;" do %>
+            <span ><%= @followings.size %> </span>FOLLOWINGS
+        <% end %>
+    
+      <% else %>
+        <%= link_to:"view_user_following", class: "btn mx-1 text-decoration-none fs-4", style: "color: black;" do %>
+            <span ><%= @followings.size %> </span>FOLLOWINGS
+        <% end %>
     <% end %>
     </p>
-    <p> <%= link_to:"view_user_follower", class: "btn mx-1 text-decoration-none fs-4", style: "color: black;" do %>
-        <span ><%= @followers.size %> </span>FOLLOWERS
+
+
+    <p>
+    <% if current_page?(view_user_follower_path) %>
+      <%= link_to:"view_user_follower", class: "btn mx-1 text-decoration-none fs-4", style: "color: blue;" do %>
+          <span ><%= @followers.size %> </span>FOLLOWERS
+      <% end %>
+    
+      <% else %>
+        <%= link_to:"view_user_follower", class: "btn mx-1 text-decoration-none fs-4", style: "color: black;" do %>
+            <span ><%= @followers.size %> </span>FOLLOWERS
+        <% end %>
     <% end %>
-    </p>
+    </p>      
+
+
+    
   </div>
   </div>
 </div>
 
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const buttons = document.querySelectorAll(".btn");
-    buttons.forEach(button => {
-      button.addEventListener("click", function() {
-        buttons.forEach(btn => {
-          btn.classList.remove("btn-secondary"); 
-          # Xóa class btn-secondary khỏi tất cả các button
-        });
-        this.classList.add("btn-secondary"); 
-          #Thêm class btn-secondary vào button đang được bấm
-      });
-    });
-  });
-</script>
+
+
+
+
+

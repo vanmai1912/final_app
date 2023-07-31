@@ -28,7 +28,7 @@ class UsersController < ApplicationController
         follow = Follow.find_by(follower: current_user, following_id: User.find(params[:user_id]))
         if follow.destroy
             redirect_to view_user_following_path
-         end
+        end
     end
 
 
@@ -38,7 +38,9 @@ class UsersController < ApplicationController
         def find_user
             @user = User.includes(:albums, :photos, :followers, :followings).find(params[:id])
             @photos = Photo.left_outer_joins(:albums).where(user_id: @user.id, albums: { id: nil })
+            @photos_pub = Photo.left_outer_joins(:albums).where(user_id: @user.id, albums: { id: nil }, is_active: true)
             @albums = @user.albums.all
+            @albums_pub = @user.albums.where(is_active: true)
             @followers = @user.followers
             @followings = @user.followings
         end

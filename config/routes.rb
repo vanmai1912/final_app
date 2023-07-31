@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "homes#index"
+
   # devise_for :users, controllers: {
   #   sessions: 'users/sessions'
   # }
@@ -7,7 +8,12 @@ Rails.application.routes.draw do
   devise_for :users
   resources :albums
   resources :photos
+
+  get '/discover/index', to: "homes#discover_index", as: :view_discover_index
+  
   get '/homes/albums', to: 'homes#show', as: :view_albums
+  get '/discover/albums', to: "homes#discover_show", as: :view_discover_show
+
   get '/users/:id/show', to: 'users#view_user', as: :view_user
   get '/users/:id/albums', to: 'users#view_user_album', as: :view_user_album
   get '/users/:id/followers', to: 'users#view_user_follower', as: :view_user_follower

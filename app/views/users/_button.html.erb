@@ -1,10 +1,10 @@
 <% if current_user.id.to_s == params[:id] %>
-<%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary text-primary border-blue bg-white", style: "border-radius: 10px; margin-left: 10px"  %>
+    <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary text-primary border-blue bg-white", style: "border-radius: 10px; margin-left: 10px"  %>
 <% elsif @followers.include?(current_user)  %>
-<%= link_to "Following", root_path, class: "btn ", style: "border-radius: 10px; border: 1px solid orangered; margin-left: 10px; background: linear-gradient(to right, #FFDAB9, #FF4500); color: white;" %>
+    <%= link_to "Following", root_path, class: "btn ", style: "border-radius: 10px; border: 1px solid orangered; margin-left: 10px; background: linear-gradient(to right, #FFDAB9, #FF4500); color: white;" %>
 <% else %>
-<%= form_with url: user_follow_path, method: :post, id: "follow-form", style: "display: none;" do |form| %>
-    <%= form.hidden_field :user_id, value: params[:id]%>
-    <%= form.submit "Follow", class: "btn follow-button", style: "border-radius: 10px; border: 1px solid orangered; margin-left: 10px; background-color: white; color: orangered;" %>
+    <%= form_with url: user_follow_path, method: :post, id: "follow-form", style: "display: none;" do |form| %>
+        <%= form.hidden_field :user_id, value: params[:id]%>
+        <%= form.submit "Follow", class: "btn follow-button", style: "border-radius: 10px; border: 1px solid orangered; margin-left: 10px; background-color: white; color: orangered;" %>
     <% end %>
 <% end %>

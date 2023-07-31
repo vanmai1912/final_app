@@ -1,23 +1,17 @@
 <%= render 'users/header' %>
-
+<div style="display:flex; justify-content: right;">
+<% if current_user.id.to_s == params[:id] %>
+  <%= link_to "Add Photo", new_photo_path, class: "btn btn-primary text-white border-blue bg-blue", style: "border-radius: 10px; margin-right: 10px;"  %>
+<% end %>
+</div>
 
 <div style="display: flex; flex-wrap: wrap">
+  
+<% if current_user.id.to_s == params[:id] %>
+ 
   <% @photos.each do |photo| %>
-      <div class="user-photo" >
-        <% if photo.image? %>
-          <div class="user-photo-img">
-            <%= image_tag url_for(photo.image.url), class: 'photo-image img-thumbnail' %>
-          </div>
-          <div style="text-align:center">
-            <p> <%= photo.name %></p>
-          </div>
-        <% else %>
-          <p>No image available.</p>
-      
-        <% end %>
-      </div>
-  <% end %>   
-  <% @photos.each do |photo| %>
+    <% if photo.is_active == true %>
+
     <div class="user-photo" >
       <% if photo.image? %>
         <div class="user-photo-img">
@@ -31,35 +25,46 @@
     
       <% end %>
     </div>
-<% end %>   
-<% @photos.each do |photo| %>
-  <div class="user-photo" >
-    <% if photo.image? %>
-      <div class="user-photo-img">
-        <%= image_tag url_for(photo.image.url), class: 'photo-image img-thumbnail' %>
-      </div>
-      <div style="text-align:center">
-        <p> <%= photo.name %></p>
-      </div>
+
     <% else %>
-      <p>No image available.</p>
-  
-    <% end %>
-  </div>
-<% end %> 
-<% @photos.each do |photo| %>
-  <div class="user-photo" >
-    <% if photo.image? %>
-      <div class="user-photo-img">
-        <%= image_tag url_for(photo.image.url), class: 'photo-image img-thumbnail' %>
+      <div class="user-photo" >
+        <% if photo.image? %>
+          <div class="user-photo-img">
+            <%= image_tag url_for(photo.image.url), class: 'photo-image img-thumbnail' %>
+            
+            <i class="fa-solid fa-lock lock-icon"></i>
+          </div>
+          <div style="text-align:center">
+            <p> <%= photo.name %></p>
+          </div>
+        <% else %>
+          <p>No image available.</p>
+      
+        <% end %>
+        
       </div>
-      <div style="text-align:center">
-        <p> <%= photo.name %></p>
-      </div>
-    <% else %>
-      <p>No image available.</p>
-  
     <% end %>
-  </div>
-<% end %> 
+  <% end %> 
+
+<% else %>
+ 
+  <% @photos_pub.each do |photo| %>
+    <div class="user-photo" >
+      <% if photo.image? %>
+        <div class="user-photo-img">
+          <%= image_tag url_for(photo.image.url), class: 'photo-image img-thumbnail' %>
+        </div>
+        <div style="text-align:center">
+          <p> <%= photo.name %></p>
+        </div>
+      <% else %>
+        <p>No image available.</p>
+    
+      <% end %>
+    </div>
+  <% end %> 
+
+<% end %>
+
+
 </div>
