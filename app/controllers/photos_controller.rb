@@ -37,11 +37,6 @@ class PhotosController < ApplicationController
     
     @photo = Photo.find(params[:id])
 
-    # Xử lý ảnh mới (nếu có)
-    if params[:photo][:image].present?
-      @photo.avatar = params[:photo][:image]
-    end
-
     if @photo.update(photo_params)
       redirect_to @photo, notice: 'Photo was successfully updated.'
     else

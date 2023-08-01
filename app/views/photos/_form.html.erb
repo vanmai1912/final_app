@@ -13,21 +13,21 @@
         <div class="profile-img" data-controller="upload-image">
          
 
-            <% if @photo.image? %>
-              <%= image_tag @photo.image.url, alt: @photo.name, class: "photo-image", id: "imgPhoto", style: 'height:150px;width:150px', data: { target: 'upload-image.avatar' } %>
-            <% else %>
-              <%= form.file_field :image, id: 'photo-upload', accept: 'image/*' %>
-            <% end %>
+          <% if @photo.image? %>
+            <%= image_tag @photo.image.url, alt: @photo.name, class: "photo-image", id: "imgPhoto", style: 'height:150px;width:150px', data: { target: 'upload-image.avatar' } %>
+          <% else %>
+            <%= image_tag('user.jpg', alt: @photo.name, class: "photo-image", id: "imgPhoto", style: 'height:150px;width:150px', data: { target: 'upload-image.avatar' } )%>
+          <% end %>
 
-            <% if action_name == 'edit' %>
-              <%= form.label :img, "Change Photo", class: "col-6 col-form-label label-avatar" %>
-              <%= form.file_field :img,
+          
+            <%= form.label :image, "Change Photo", class: "col-6 col-form-label label-avatar" %>
+            <%= form.file_field :image,
                                 class: "d-none",
                                 placeholder: 'Update picture',
-                                data: { action: 'change->upload-image#handleChange' },
+                                
                                 direct_upload: true,
                                 onchange: "uploadImage(event)" %>
-            <% end %>
+         
         </div>
       </div>
     </div>

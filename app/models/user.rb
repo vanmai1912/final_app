@@ -18,4 +18,8 @@ class User < ApplicationRecord
   # xem user a đã follow ai -> a.followings
   # xem user a được ai follow -> a.followers
 
+  # has_many :followers, class_name: "Follow", foreign_key: "follower_id"
+  # has_many :followings, class_name: "Follow", foreign_key: "following_id"
+
+
 end

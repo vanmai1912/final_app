@@ -27,7 +27,26 @@
         <div class="col-6" >
             <div class="row", style="margin: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); padding:5px " >
                 <div class="col-5">
-                    <%= image_tag(photo.image.url alt: "Photo Picture", class: "photo-image img-fluid rounded-start" )%>
+                <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <%= image_tag(photo.image.url, alt: "Photo Picture", class: "" )%>
+                </button>
+                
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">    
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <%= image_tag(photo.image.url, alt: "Photo Picture", class: "", style: "width:500px; height: 450px;" )%>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+
+
                 </div>
                 <div class="col-2">
                 </div>
@@ -39,9 +58,7 @@
                             <%= image_tag('user.jpg', alt: "User Avatar", class: "avatar-image rounded-circle") %>
                         <% end %>
                         <%= link_to "#{photo.user.firstname} #{photo.user.lastname}", view_user_path(photo.user), class: "mx-1 text-decoration-none fs-4" %>
-                        <% if current_page?(root_path) %>
-                
-                        <% else %>
+                        <% if current_page?(view_discover_index_path) %>
                             <%= form_with url: user_follow_path(current_user.id), method: :post, id: "follow-form", style: "display: none;" do |form| %>
                                 <%= form.hidden_field :user_id, value: photo.user_id %>
                                 <%= form.submit "Follow", class: "btn follow-button", style: "border-radius: 10px; border: 1px solid orangered; margin-left: 10px; background-color: white; color: orangered;" %>
@@ -59,4 +76,28 @@
         </div>
  
     <% end %>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
