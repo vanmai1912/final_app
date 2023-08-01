@@ -9,12 +9,12 @@ class UsersController < ApplicationController
     end
 
     def view_user_follower
-        follower_ids = @followings.map { |follow| follow[:follower_id] }
+        follower_ids = @followers.map { |follow| follow[:following_id] }
         @users_followers = User.select { |user| follower_ids.include?(user.id) }
     end
 
     def view_user_following
-        following_ids = @followers.map { |follow| follow[:following_id] }
+        following_ids = @followings.map { |follow| follow[:follower_id] }
         @users_followings = User.select { |user| following_ids.include?(user.id) }
         
     end
