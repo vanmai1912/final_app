@@ -8,18 +8,18 @@ class User < ApplicationRecord
   has_many :albums
   mount_uploader :image, ImageUploader
 
-  has_many :follows_as_follower, class_name: "Follow", foreign_key: "follower_id"
-  has_many :follows_as_following, class_name: "Follow", foreign_key: "following_id"
+  # has_many :follows_as_follower, class_name: "Follow", foreign_key: "follower_id"
+  # has_many :follows_as_following, class_name: "Follow", foreign_key: "following_id"
 
-  has_many :followers, through: :follows_as_following, source: :follower
-  has_many :followings, through: :follows_as_follower, source: :following
+  # has_many :followers, through: :follows_as_following, source: :follower
+  # has_many :followings, through: :follows_as_follower, source: :following
 
   # user a follow user b -> Follow.create(follower: a, following: b)
   # xem user a đã follow ai -> a.followings
   # xem user a được ai follow -> a.followers
 
-  # has_many :followers, class_name: "Follow", foreign_key: "follower_id"
-  # has_many :followings, class_name: "Follow", foreign_key: "following_id"
+  has_many :followers, class_name: "Follow", foreign_key: "follower_id"
+  has_many :followings, class_name: "Follow", foreign_key: "following_id"
 
 
 end

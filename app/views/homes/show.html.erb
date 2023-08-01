@@ -19,20 +19,61 @@
 </div>
 
 <div class="row" >
-    <% @albums.each do |album| %>
+    <% @albums.each_with_index do |album, index| %>
         <div class="col-6", style="height: 300px;">
             <div class="row", style="margin: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); padding:5px " >
-                <div class="col-5 profile-album-card ">
+                <div class="col-6 profile-album-card ">
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#albumsShow<%= index %>">
                     <% album.photos.each_with_index do |photo, index| %>
                         <div class= "album-photo-image">
                             <%= image_tag(photo.image.url, alt: "Photo Picture", class: "rotate-image-#{index}" )%>
                         </div>
                        
                     <% end %>
+                    </button>
+                    #
+                    <div class="modal fade" id="albumsShow<%= index %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="albumLable"> <%= album.name %> </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <div id="carouselAlbumControls<%= index %>" class="carousel slide" data-bs-ride="carousel">
+                                
+                                    <div class="carousel-inner">
+                                    
+                                        <% album.photos.each_with_index do |photo, index| %>
+                                            <div class="carousel-item <%= 'active' if index == 0 %>">
+                                                <%= image_tag(photo.image.url, class: "d-block w-100", alt: "Slide #{index + 1}") %>
+                                            </div>
+                                        <% end %>
+                                    
+                                    </div>
+                                    <!-- Nút trượt trước và sau -->
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselAlbumControls<%= index %>" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselAlbumControls<%= index %>" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <h5 class="modal-title" id="albumLableFooter"> <%= album.des %> </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    #
                 </div>
-                <div class="col-2">
-                </div>
-                <div class="col-5", style="height: 250px">
+
+               
+                
+                <div class="col-6", style="height: 250px">
                     <div style="display: flex; align-items: center;">
                         <% if album.user.image? %>
                             <%= image_tag(album.user.image.url, alt: "User Avatar", class: "avatar-image rounded-circle") %>
@@ -48,8 +89,8 @@
                             <% end %>
                         <% end %>
                     </div>
-                    <h5 class="card-title", style=" margin-top: 15px" ><%= album.name %></h5>
-                    <p class="card-text"><%= album.des %></p>
+                    <h5 class="card-title", style=" margin: 10px 0 0 5px" ><%= album.name %></h5>
+                    <p class="card-text", style="margin: 0 0 0 5px"><%= album.des %></p>
                 </div>
                 
                
